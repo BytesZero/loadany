@@ -48,22 +48,23 @@ class _MyHomePageState extends State<MyHomePage> {
           status: status,
           endLoadMore: false,
           loadMoreBuilder: (BuildContext context, LoadStatus status) {
-            if (status == LoadStatus.loading) {
-              return Container(
-                height: 40,
-                color: Colors.purple,
-                child: Center(
-                  child: Text(
-                    'Footer Loading ...',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return null;
-            }
+//            if (status == LoadStatus.loading) {
+//              return Container(
+//                height: 40,
+//                color: Colors.purple,
+//                child: Center(
+//                  child: Text(
+//                    'Footer Loading ...',
+//                    style: TextStyle(
+//                      color: Colors.white,
+//                    ),
+//                  ),
+//                ),
+//              );
+//            } else {
+//              return null;
+//            }
+            return null;
           },
           child: CustomScrollView(
             slivers: <Widget>[
@@ -72,6 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 expandedHeight: 250.0,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text('Load More Demo'),
+                  background: Image.network(
+                    'https://cdn.pixabay.com/photo/2019/07/15/17/13/flower-4339932__480.jpg',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               SliverGrid(
@@ -136,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       status = LoadStatus.loading;
     });
-    Timer.periodic(Duration(milliseconds: 200), (Timer timer) {
+    Timer.periodic(Duration(milliseconds: 5000), (Timer timer) {
       timer.cancel();
       int length = list.length;
       for (var i = 1; i < 11; ++i) {
