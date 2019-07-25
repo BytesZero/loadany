@@ -12,7 +12,7 @@ enum LoadStatus {
   normal, //正常状态
   error, //加载错误
   loading, //加载中
-  finish, //加载完成
+  completed, //加载完成
 }
 
 ///加载更多 Widget
@@ -29,7 +29,24 @@ class LoadAny extends StatefulWidget {
   ///CustomScrollView
   final CustomScrollView child;
 
-  LoadAny({this.status, this.child, this.onLoadMore, this.loadMoreBuilder});
+  ///到底部才触发加载更多
+  final bool endLoadMore;
+
+  ///加载更多底部触发距离
+  final double bottomTriggerDistance;
+
+  ///底部 loadmore 高度
+  final double footerHeight;
+
+  LoadAny({
+    @required this.status,
+    @required this.child,
+    @required this.onLoadMore,
+    this.endLoadMore = true,
+    this.bottomTriggerDistance = 200,
+    this.footerHeight = 40,
+    this.loadMoreBuilder,
+  });
 
   @override
   State<StatefulWidget> createState() => _LoadAnyState();
@@ -70,17 +87,17 @@ class _LoadAnyState extends State<LoadAny> {
       return _buildLoading();
     } else if (status == LoadStatus.error) {
       return _buildLoadError();
-    } else if (status == LoadStatus.finish) {
+    } else if (status == LoadStatus.completed) {
       return _buildLoadFinish();
     } else {
-      return Container(height: 40);
+      return Container(height: widget.footerHeight);
     }
   }
 
   ///加载中状态
   Widget _buildLoading() {
     return Container(
-      height: 40,
+      height: widget.footerHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,7 +108,13 @@ class _LoadAnyState extends State<LoadAny> {
             height: 20,
           ),
           SizedBox(width: 10),
-          Text('加载中...'),
+          Text(
+            '加载中...',
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+            ),
+          ),
         ],
       ),
     );
@@ -103,10 +126,12 @@ class _LoadAnyState extends State<LoadAny> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         //点击重试加载更多
-        widget.onLoadMore();
+        if (widget.onLoadMore != null) {
+          widget.onLoadMore();
+        }
       },
       child: Container(
-        height: 40,
+        height: widget.footerHeight,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +142,13 @@ class _LoadAnyState extends State<LoadAny> {
               size: 20,
             ),
             SizedBox(width: 10),
-            Text('加载失败，请重试')
+            Text(
+              '加载失败，点击重试',
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+            ),
           ],
         ),
       ),
@@ -127,21 +158,31 @@ class _LoadAnyState extends State<LoadAny> {
   ///加载错误状态
   Widget _buildLoadFinish() {
     return Container(
-      height: 40,
+      height: widget.footerHeight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
-            width: 40,
-            child: Divider(),
+            width: 10,
+            child: Divider(
+              color: Colors.grey,
+            ),
           ),
-          SizedBox(width: 10),
-          Text('没有更多了'),
-          SizedBox(width: 10),
+          SizedBox(width: 6),
+          Text(
+            '没有更多了',
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+            ),
+          ),
+          SizedBox(width: 6),
           SizedBox(
-            width: 40,
-            child: Divider(),
+            width: 10,
+            child: Divider(
+              color: Colors.grey,
+            ),
           ),
         ],
       ),
@@ -150,14 +191,31 @@ class _LoadAnyState extends State<LoadAny> {
 
   ///计算加载更多
   bool _handleNotification(ScrollNotification notification) {
-    if (notification is ScrollEndNotification) {
-      //当前滚动距离
-      double currentExtent = notification.metrics.pixels;
-      //最大滚动距离
-      double maxExtent = notification.metrics.maxScrollExtent;
+    //当前滚动距离
+    double currentExtent = notification.metrics.pixels;
+    //最大滚动距离
+    double maxExtent = notification.metrics.maxScrollExtent;
+    //滚动更新过程中，并且设置非滚动到底部可以触发加载更多
+    if ((notification is ScrollUpdateNotification) && !widget.endLoadMore) {
+      return _checkLoadMore(
+          (maxExtent - currentExtent <= widget.bottomTriggerDistance));
+    }
+
+    //滚动到底部，并且设置滚动到底部才触发加载更多
+    if ((notification is ScrollEndNotification) && widget.endLoadMore) {
       //滚动到底部并且加载状态为正常时，调用加载更多
-      if ((currentExtent >= maxExtent) && widget.status == LoadStatus.normal) {
+      return _checkLoadMore((currentExtent >= maxExtent));
+    }
+
+    return false;
+  }
+
+  ///处理加载更多
+  bool _checkLoadMore(bool canLoad) {
+    if (canLoad && widget.status == LoadStatus.normal) {
+      if (widget.onLoadMore != null) {
         widget.onLoadMore();
+        return true;
       }
     }
     return false;
