@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: RefreshIndicator(
         onRefresh: () async {
           if (status == LoadStatus.normal) {
+            await Future.delayed(Duration(seconds: 3));
             list.removeRange(10, list.length);
             setState(() {});
           }
