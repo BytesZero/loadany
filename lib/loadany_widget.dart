@@ -12,7 +12,7 @@ enum LoadStatus {
   normal, //正常状态
   error, //加载错误
   loading, //加载中
-  finish, //加载完成
+  completed, //加载完成
 }
 
 ///加载更多 Widget
@@ -39,9 +39,9 @@ class LoadAny extends StatefulWidget {
   final double footerHeight;
 
   LoadAny({
-    this.status,
-    this.child,
-    this.onLoadMore,
+    @required this.status,
+    @required this.child,
+    @required this.onLoadMore,
     this.endLoadMore = true,
     this.bottomTriggerDistance = 200,
     this.footerHeight = 40,
@@ -87,7 +87,7 @@ class _LoadAnyState extends State<LoadAny> {
       return _buildLoading();
     } else if (status == LoadStatus.error) {
       return _buildLoadError();
-    } else if (status == LoadStatus.finish) {
+    } else if (status == LoadStatus.completed) {
       return _buildLoadFinish();
     } else {
       return Container(height: widget.footerHeight);
@@ -126,7 +126,9 @@ class _LoadAnyState extends State<LoadAny> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         //点击重试加载更多
-        widget.onLoadMore();
+        if (widget.onLoadMore != null) {
+          widget.onLoadMore();
+        }
       },
       child: Container(
         height: widget.footerHeight,
@@ -211,9 +213,10 @@ class _LoadAnyState extends State<LoadAny> {
   ///处理加载更多
   bool _checkLoadMore(bool canLoad) {
     if (canLoad && widget.status == LoadStatus.normal) {
-      print('ScrollEndNotification ${widget.status}');
-      widget.onLoadMore();
-      return true;
+      if (widget.onLoadMore != null) {
+        widget.onLoadMore();
+        return true;
+      }
     }
     return false;
   }

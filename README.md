@@ -37,7 +37,6 @@ LoadAny(
     ],
   ),
 )
-
 ```
 
 ```Dart
@@ -54,7 +53,7 @@ Future<void> getLoadMore() async {
       }
     
       if (length > 80) {
-        status = LoadStatus.finish;
+        status = LoadStatus.completed;
       } else if (length >= 50 && length < 70) {
         status = LoadStatus.error;
       } else {

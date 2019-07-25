@@ -39,33 +39,28 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          list.removeRange(10, list.length);
-          status = LoadStatus.normal;
-          setState(() {});
+          if (status == LoadStatus.normal) {
+            list.removeRange(10, list.length);
+            setState(() {});
+          }
         },
         child: LoadAny(
           onLoadMore: getLoadMore,
           status: status,
-          endLoadMore: false,
-          loadMoreBuilder: (BuildContext context, LoadStatus status) {
+//          footerHeight: 40,
+//          endLoadMore: true,
+//          bottomTriggerDistance: 200,
+//          loadMoreBuilder: (BuildContext context, LoadStatus status) {
 //            if (status == LoadStatus.loading) {
 //              return Container(
 //                height: 40,
-//                color: Colors.purple,
-//                child: Center(
-//                  child: Text(
-//                    'Footer Loading ...',
-//                    style: TextStyle(
-//                      color: Colors.white,
-//                    ),
-//                  ),
-//                ),
+//                child: Text('Loading'),
+//                color: Colors.green,
+//                alignment: Alignment.center,
 //              );
-//            } else {
-//              return null;
 //            }
-            return null;
-          },
+//            return null;
+//          },
           child: CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
@@ -149,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
       }
 
       if (length > 80) {
-        status = LoadStatus.finish;
+        status = LoadStatus.completed;
       } else if (length >= 50 && length < 70) {
         status = LoadStatus.error;
       } else {
