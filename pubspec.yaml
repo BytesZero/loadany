@@ -3,7 +3,7 @@ description: A new Flutter loads more package, supports ListView „ÄÅScrollView „
 version: 0.1.0
 author: Zero <zhengsonglan001@gmail.com>
 homepage: https://github.com/yy1300326388/loadany
-documentation: https://github.com/yy1300326388/loadany/docs
+documentation: https://github.com/yy1300326388/loadany/tree/master/example
 publish_to: https://pub.dev
 
 environment:
