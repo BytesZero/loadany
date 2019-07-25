@@ -109,6 +109,9 @@ LoadAny(
 ```
 
 ### Add RefreshIndicator to refresh
+
+<img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Kapture%2004.gif" width="220"/>
+
 ```Dart
 RefreshIndicator(
     onRefresh: () async {
