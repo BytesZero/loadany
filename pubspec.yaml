@@ -1,6 +1,6 @@
 name: loadany
 description: A new Flutter loads more package, supports ListView 、ScrollView 、Sliver Widget, and can load more styles by custom.
-version: 0.1.0
+version: 0.1.1
 author: Zero <zhengsonglan001@gmail.com>
 homepage: https://github.com/yy1300326388/loadany
 documentation: https://github.com/yy1300326388/loadany/tree/master/example
