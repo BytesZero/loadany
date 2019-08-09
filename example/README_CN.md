@@ -1,10 +1,10 @@
-# LoadAny Example
+# LoadAny 示例
 
-A example Flutter application of LoadAny.
+LoadAny 的示例程序
 
-[中文说明](https://github.com/yy1300326388/loadany/tree/master/example/README_CN.md)
+[English](https://github.com/yy1300326388/loadany/tree/master/example/README.md)
 
-## Getting Started
+## 入门
 
 ```Dart
 import 'package:loadany/loadany.dart';
@@ -25,7 +25,7 @@ LoadAny(
 )
 ```
 ```Dart
-/// Load More Get Data
+/// 加载更多数据
 Future<void> getLoadMore() async {
     setState(() {
       status = LoadStatus.loading;
@@ -49,13 +49,13 @@ Future<void> getLoadMore() async {
 }
 ```
 
-### Set LoadMore Footer height
+### 设置加载更多底部高度
 
 ```Dart
 LoadAny(
   onLoadMore: getLoadMore,
   status: status,
-  footerHeight: 40, // Add
+  footerHeight: 40, // 添加
   child: CustomScrollView(
     slivers: <Widget>[
       SliverGrid(...),
@@ -65,14 +65,14 @@ LoadAny(
 )
 ```
 
-### Set the feed trigger flow bottom trigger timing height
+### 设置 Feed 流式加载，并且设置距离底部多少距离触发加载
 
 ```Dart
 LoadAny(
   onLoadMore: getLoadMore,
   status: status,
-  endLoadMore: false, // Add
-  bottomTriggerDistance: 200, // Add
+  endLoadMore: false, // 添加
+  bottomTriggerDistance: 200, // 添加
   child: CustomScrollView(
     slivers: <Widget>[
       SliverGrid(...),
@@ -82,7 +82,7 @@ LoadAny(
 )
 ```
 
-### Customize LoadMore Footer styles
+### 自定义底部加载更多样式
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Simulator%20Screen%20Shot%2005.png" width="220"/>
 
@@ -110,7 +110,7 @@ LoadAny(
 )
 ```
 
-### Add RefreshIndicator to refresh
+### 添加嵌套 RefreshIndicator 下拉刷新
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Kapture%2004.gif" width="220"/>
 
