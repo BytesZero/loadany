@@ -66,6 +66,10 @@ Future<void> getLoadMore() async {
 }
 ```
 
+## Getting Started
+
+[Getting Started](https://github.com/yy1300326388/loadany/tree/master/example)
+
 ## Screenshot
 
 * Loading

@@ -66,6 +66,10 @@ Future<void> getLoadMore() async {
 }
 ```
 
+## 入门文档
+
+[查看文档](https://github.com/yy1300326388/loadany/tree/master/example/README_CN.md)
+
 ## 截图
 
 * 加载中
