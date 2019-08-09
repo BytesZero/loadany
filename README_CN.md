@@ -1,29 +1,29 @@
 # LoadAny
 
-A new Flutter loads more package.
+一个新的 Flutter 上拉加载更多库
 
-[中文说明](https://github.com/yy1300326388/loadany/tree/master/README_CN.md)
+[English](https://github.com/yy1300326388/loadany)
 
-## Support
+## 支持
 
 * CustomScrollView
 * SliverListView
 * SliverGridView
-* SliverListView substitute ListView
-* SliverGridView substitute GridView
-* Custom loading style
-* External nested RefreshIndicator
-* Feed streaming
+* SliverListView 可替代 ListView
+* SliverGridView 可替代 GridView
+* 自定义各状态下的加载样式
+* 可外嵌 RefreshIndicator 下拉刷新
+* 支持 Feed 流式加载
 
-## Usage
+## 使用
 
-- Add LoadAny
+- 添加 LoadAny
 
-```Dart
+```dart
 import 'package:loadany/loadany.dart';
 ```
 
-```Dart
+```dart
 LoadStatus status = LoadStatus.normal;
 
 LoadAny(
@@ -41,8 +41,8 @@ LoadAny(
 )
 ```
 
-```Dart
-/// Load More Get Data
+```dart
+/// 加载更多 Data
 Future<void> getLoadMore() async {
     setState(() {
       status = LoadStatus.loading;
@@ -66,24 +66,24 @@ Future<void> getLoadMore() async {
 }
 ```
 
-## Getting Started
+## 入门文档
 
-[Getting Started](https://github.com/yy1300326388/loadany/tree/master/example)
+[查看文档](https://github.com/yy1300326388/loadany/tree/master/example/README_CN.md)
 
-## Screenshot
+## 截图
 
-* Loading
+* 加载中
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Kapture%2001.gif" width="220"/>
 
-* Error
+* 加载错误
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Kapture%2002.gif" width="220"/>
 
-* Completed
+* 加载完成
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Kapture%2003.gif" width="220"/>
 
-## Issues and feedback
+## 意见和问题
 
-Please file [issues](https://github.com/yy1300326388/loadany/issues/new) to send feedback or report a bug. Thank you!
+如果有任何意见和问题请提 [issues](https://github.com/yy1300326388/loadany/issues/new) 反馈给我，非常感谢
