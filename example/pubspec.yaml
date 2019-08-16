@@ -12,7 +12,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   loadany:
-    path: ../../loadany
+    path: ../
 
 dev_dependencies:
   flutter_test:
