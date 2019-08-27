@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {});
         },
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.refresh),
       ),
     );
   }

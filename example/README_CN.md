@@ -4,6 +4,8 @@ LoadAny 的示例程序
 
 [English](https://github.com/yy1300326388/loadany/tree/master/example/README.md)
 
+[![Codemagic build status](https://api.codemagic.io/apps/5d561d3a6a6c3600097b43a6/5d561d3a6a6c3600097b43a5/status_badge.svg)](https://codemagic.io/apps/5d561d3a6a6c3600097b43a6/5d561d3a6a6c3600097b43a5/latest_build)
+
 ## 入门
 
 ```Dart
