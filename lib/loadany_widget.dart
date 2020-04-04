@@ -38,6 +38,9 @@ class LoadAny extends StatefulWidget {
   ///底部 loadmore 高度
   final double footerHeight;
 
+  ///Footer key
+  final Key _keyLastItem = Key("__LAST_ITEM");
+
   LoadAny({
     @required this.status,
     @required this.child,
@@ -56,8 +59,17 @@ class _LoadAnyState extends State<LoadAny> {
   @override
   Widget build(BuildContext context) {
     ///添加 Footer Sliver
+    dynamic check =
+        widget.child.slivers.elementAt(widget.child.slivers.length - 1);
+
+    ///判断是否已存在 Footer
+    if (check is SliverSafeArea && check.key == widget._keyLastItem) {
+      widget.child.slivers.removeLast();
+    }
+
     widget.child.slivers.add(
       SliverSafeArea(
+        key: widget._keyLastItem,
         top: false,
         left: false,
         right: false,
