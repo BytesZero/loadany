@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     );
                   },
-                  childCount: list?.length ?? 0,
+                  childCount: 12,
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
