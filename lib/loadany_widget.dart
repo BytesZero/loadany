@@ -41,6 +41,15 @@ class LoadAny extends StatefulWidget {
   ///Footer key
   final Key _keyLastItem = Key("__LAST_ITEM");
 
+  ///Text displayed during load
+  final String loadingMsg;
+
+  ///Text displayed in case of error
+  final String errorMsg;
+
+  ///Text displayed when loading is finished
+  final String finishMsg;
+
   LoadAny({
     @required this.status,
     @required this.child,
@@ -49,6 +58,9 @@ class LoadAny extends StatefulWidget {
     this.bottomTriggerDistance = 200,
     this.footerHeight = 40,
     this.loadMoreBuilder,
+    this.loadingMsg='加载中...',
+    this.errorMsg='加载失败，点击重试',
+    this.finishMsg='没有更多了',
   });
 
   @override
@@ -121,7 +133,7 @@ class _LoadAnyState extends State<LoadAny> {
           ),
           SizedBox(width: 10),
           Text(
-            '加载中...',
+            widget.loadingMsg,
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey,
@@ -155,7 +167,7 @@ class _LoadAnyState extends State<LoadAny> {
             ),
             SizedBox(width: 10),
             Text(
-              '加载失败，点击重试',
+              widget.errorMsg,
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey,
@@ -183,7 +195,7 @@ class _LoadAnyState extends State<LoadAny> {
           ),
           SizedBox(width: 6),
           Text(
-            '没有更多了',
+            widget.finishMsg,
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey,

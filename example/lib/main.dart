@@ -48,6 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: LoadAny(
           onLoadMore: getLoadMore,
           status: status,
+          loadingMsg: '加载中...',
+          errorMsg: '加载错误，点击重试',
+          finishMsg: '没有更多啦',
+
 //          footerHeight: 40,
 //          endLoadMore: true,
 //          bottomTriggerDistance: 200,
@@ -90,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     );
                   },
-                  childCount: list?.length ?? 0,
+                  childCount: 12,
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
