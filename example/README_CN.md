@@ -84,6 +84,24 @@ LoadAny(
 )
 ```
 
+### 自定义文字内容
+
+```Dart
+LoadAny(
+  onLoadMore: getLoadMore,
+  status: status,
+  loadingMsg: '加载中...', // 添加
+  errorMsg: '加载错误，点击重试', // 添加
+  finishMsg: '没有更多啦', // 添加
+  child: CustomScrollView(
+    slivers: <Widget>[
+      SliverGrid(...),
+      SliverList(...),
+    ],
+  ),
+)
+```
+
 ### 自定义底部加载更多样式
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Simulator%20Screen%20Shot%2005.png" width="220"/>
