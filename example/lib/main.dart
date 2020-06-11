@@ -48,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: LoadAny(
           onLoadMore: getLoadMore,
           status: status,
-          errorMsg: 'Error Reload',
+          loadingMsg: '加载中...',
+          errorMsg: '加载错误，点击重试',
+          finishMsg: '没有更多啦',
+
 //          footerHeight: 40,
 //          endLoadMore: true,
 //          bottomTriggerDistance: 200,

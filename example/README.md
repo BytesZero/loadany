@@ -84,6 +84,24 @@ LoadAny(
 )
 ```
 
+### Custom status text
+
+```Dart
+LoadAny(
+  onLoadMore: getLoadMore,
+  status: status,
+  loadingMsg: 'Loading...', // Add
+  errorMsg: 'Error', // Add
+  finishMsg: 'Finish', // Add 
+  child: CustomScrollView(
+    slivers: <Widget>[
+      SliverGrid(...),
+      SliverList(...),
+    ],
+  ),
+)
+```
+
 ### Customize LoadMore Footer styles
 
 <img src="https://raw.githubusercontent.com/yy1300326388/loadany/develop/example/images/Simulator%20Screen%20Shot%2005.png" width="220"/>

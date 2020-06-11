@@ -1,3 +1,8 @@
+## [0.1.4] - 2020-06-11
+
+* 可以自定义各状态下的文字内容啦  [【#7】](https://github.com/yy1300326388/loadany/pull/7)
+
+
 ## [0.1.3] - 2020-04-04
 
 * 修复多次添加 Footer 的问题  [【#2】](https://github.com/yy1300326388/loadany/issues/2)
