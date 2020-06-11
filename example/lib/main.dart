@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: LoadAny(
           onLoadMore: getLoadMore,
           status: status,
+          errorMsg: 'Error Reload',
 //          footerHeight: 40,
 //          endLoadMore: true,
 //          bottomTriggerDistance: 200,
