@@ -76,3 +76,4 @@ doc/api/
 
 Flutter.podspec
 flutter_export_environment.sh
+.fvm

@@ -1,3 +1,7 @@
+## [1.0.0] - 2021-03-05
+
+* Migrating to null safety
+
 ## [0.1.4] - 2020-06-11
 
 * 可以自定义各状态下的文字内容啦  [【#7】](https://github.com/yy1300326388/loadany/pull/7)

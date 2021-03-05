@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 typedef LoadMoreCallback = Future<void> Function();
 
 ///构建自定义状态返回
-typedef LoadMoreBuilder = Widget Function(
+typedef LoadMoreBuilder = Widget? Function(
     BuildContext context, LoadStatus status);
 
 ///加载状态
@@ -24,7 +24,7 @@ class LoadAny extends StatefulWidget {
   final LoadMoreCallback onLoadMore;
 
   ///自定义加载更多 Widget
-  final LoadMoreBuilder loadMoreBuilder;
+  final LoadMoreBuilder? loadMoreBuilder;
 
   ///CustomScrollView
   final CustomScrollView child;
@@ -51,16 +51,16 @@ class LoadAny extends StatefulWidget {
   final String finishMsg;
 
   LoadAny({
-    @required this.status,
-    @required this.child,
-    @required this.onLoadMore,
+    required this.status,
+    required this.child,
+    required this.onLoadMore,
     this.endLoadMore = true,
     this.bottomTriggerDistance = 200,
     this.footerHeight = 40,
     this.loadMoreBuilder,
-    this.loadingMsg='加载中...',
-    this.errorMsg='加载失败，点击重试',
-    this.finishMsg='没有更多了',
+    this.loadingMsg = '加载中...',
+    this.errorMsg = '加载失败，点击重试',
+    this.finishMsg = '没有更多了',
   });
 
   @override
@@ -100,9 +100,9 @@ class _LoadAnyState extends State<LoadAny> {
   Widget _buildLoadMore(LoadStatus status) {
     ///检查返回自定义状态
     if (widget.loadMoreBuilder != null) {
-      Widget loadMoreBuilder = widget.loadMoreBuilder(context, status);
-      if (loadMoreBuilder != null) {
-        return loadMoreBuilder;
+      Widget? loadMore = widget.loadMoreBuilder!(context, status);
+      if (loadMore != null) {
+        return loadMore;
       }
     }
 
@@ -150,9 +150,7 @@ class _LoadAnyState extends State<LoadAny> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         //点击重试加载更多
-        if (widget.onLoadMore != null) {
-          widget.onLoadMore();
-        }
+        widget.onLoadMore();
       },
       child: Container(
         height: widget.footerHeight,
@@ -237,10 +235,8 @@ class _LoadAnyState extends State<LoadAny> {
   ///处理加载更多
   bool _checkLoadMore(bool canLoad) {
     if (canLoad && widget.status == LoadStatus.normal) {
-      if (widget.onLoadMore != null) {
-        widget.onLoadMore();
-        return true;
-      }
+      widget.onLoadMore();
+      return true;
     }
     return false;
   }
